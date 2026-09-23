@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Mente Clara: una introducción visual y práctica a la psicología.">
+	<title>Mente Clara | Psicología para entenderte mejor</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--ink: #172522;
+			--muted: #61716b;
+			--paper: #f5f1e9;
+			--card: #fffdf8;
+			--mint: #b9e3d1;
+			--mint-dark: #26745c;
+			--coral: #ef866f;
+			--yellow: #f3d36a;
+			--line: #dfe4dc;
+			--shadow: 0 18px 50px rgba(42, 61, 52, 0.09);
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--paper);
+			font-family: "DM Sans", sans-serif;
+			line-height: 1.5;
+		}
+		a { color: inherit; text-decoration: none; }
+		button { font: inherit; }
+		.shell { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+		.topbar {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 25px 0;
+		}
+		.brand { display: flex; gap: 10px; align-items: center; font-weight: 700; letter-spacing: -0.03em; }
+		.brand-mark { display: grid; place-items: center; width: 36px; height: 36px; color: var(--ink); background: var(--yellow); border-radius: 50% 50% 50% 12px; font-size: 18px; }
+		nav { display: flex; gap: 28px; color: var(--muted); font-size: 14px; font-weight: 600; }
+		nav a:hover { color: var(--ink); }
+		.hero { position: relative; display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; min-height: 640px; gap: 70px; overflow: hidden; }
+		.eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 22px; color: var(--mint-dark); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+		.eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--coral); }
+		h1, h2, h3 { font-family: "Space Grotesk", sans-serif; letter-spacing: -0.055em; line-height: 1.04; margin: 0; }
+		h1 { max-width: 650px; font-size: clamp(48px, 7vw, 86px); }
+		h1 em { color: var(--mint-dark); font-style: normal; }
+		.hero-copy { max-width: 520px; margin: 25px 0 32px; color: var(--muted); font-size: 18px; }
+		.button { display: inline-flex; align-items: center; gap: 12px; padding: 14px 20px; border: 0; border-radius: 4px; color: #fff; background: var(--ink); cursor: pointer; font-weight: 700; transition: transform 180ms ease, background 180ms ease; }
+		.button:hover { background: var(--mint-dark); transform: translateY(-2px); }
+		.button-light { color: var(--ink); background: var(--mint); }
+		.hero-art { position: relative; min-height: 420px; }
+		.orbit { position: absolute; inset: 26px 5px 10px 35px; border: 1px solid #c9d8cc; border-radius: 48% 52% 46% 54%; transform: rotate(-17deg); }
+		.orbit::before, .orbit::after { content: ""; position: absolute; border: 1px solid #c9d8cc; border-radius: 50%; }
+		.orbit::before { inset: 34px 58px 25px 0; transform: rotate(34deg); }
+		.orbit::after { inset: 84px 0 0 85px; transform: rotate(-28deg); }
+		.brain { position: absolute; top: 105px; left: 105px; display: grid; place-items: center; width: 220px; height: 190px; color: var(--ink); background: var(--coral); border: 4px solid var(--ink); border-radius: 52% 48% 44% 55%; font-size: 92px; box-shadow: 13px 15px 0 var(--yellow); transform: rotate(-8deg); }
+		.brain span { transform: rotate(8deg); }
+		.sticker { position: absolute; padding: 10px 14px; border: 2px solid var(--ink); color: var(--ink); background: var(--card); font-size: 13px; font-weight: 700; box-shadow: 4px 5px 0 var(--ink); }
+		.sticker-one { top: 47px; right: 10px; transform: rotate(8deg); }
+		.sticker-two { right: 17px; bottom: 48px; background: var(--mint); transform: rotate(-7deg); }
+		.section { padding: 100px 0; }
+		.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 25px; margin-bottom: 38px; }
+		h2 { max-width: 560px; font-size: clamp(34px, 5vw, 58px); }
+		.section-heading p { max-width: 320px; margin: 0; color: var(--muted); }
+		.lesson-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+		.lesson { min-height: 290px; padding: 25px; border: 1px solid var(--line); background: var(--card); box-shadow: var(--shadow); }
+		.lesson:nth-child(2) { background: var(--mint); }
+		.lesson:nth-child(3) { background: #f8d8cc; }
+		.lesson-number { display: flex; justify-content: space-between; color: var(--muted); font-size: 13px; font-weight: 700; }
+		.lesson h3 { margin: 68px 0 12px; font-size: 27px; }
+		.lesson p { margin: 0; color: #53635d; font-size: 15px; }
+		.practice { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 70px; align-items: center; padding: 80px 0 110px; }
+		.practice-copy p { max-width: 430px; color: var(--muted); }
+		.quiz { padding: 30px; border: 1px solid var(--line); background: var(--card); box-shadow: var(--shadow); }
+		.quiz-label { margin: 0 0 15px; color: var(--coral); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+		.quiz h3 { margin-bottom: 24px; font-size: 25px; }
+		.answers { display: grid; gap: 10px; }
+		.answer { padding: 14px 16px; border: 1px solid var(--line); color: var(--ink); background: transparent; cursor: pointer; text-align: left; transition: border 180ms ease, background 180ms ease; }
+		.answer:hover { border-color: var(--mint-dark); background: #f1f8f3; }
+		.answer.correct { border-color: var(--mint-dark); background: var(--mint); }
+		.answer.wrong { border-color: #c45b4d; background: #f8d8cc; }
+		#feedback { min-height: 24px; margin: 15px 0 0; color: var(--mint-dark); font-size: 14px; font-weight: 700; }
+		.questions { padding: 100px 0 110px; }
+		.ai-panel { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 28px; padding: 30px; border: 1px solid var(--ink); background: var(--ink); color: #fff; box-shadow: 12px 12px 0 var(--coral); }
+		.ai-intro h3 { max-width: 360px; margin: 12px 0 15px; color: #fff; font-size: 33px; }
+		.ai-intro p { max-width: 380px; margin: 0; color: #cbd7cf; font-size: 15px; }
+		.ai-form { display: grid; gap: 12px; }
+		.ai-form label { color: #cbd7cf; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+		.ai-form input, .ai-form textarea { width: 100%; padding: 13px 14px; border: 1px solid #52635c; border-radius: 0; color: var(--ink); background: #fffdf8; font: inherit; }
+		.ai-form textarea { min-height: 110px; resize: vertical; }
+		.ai-form input:focus, .ai-form textarea:focus { outline: 2px solid var(--yellow); outline-offset: 2px; }
+		.ai-form .button { justify-self: start; color: var(--ink); background: var(--yellow); }
+		.ai-form .button:hover { color: #fff; background: var(--mint-dark); }
+		.main-topic { width: 100%; padding: 13px 14px; border: 1px solid #52635c; color: var(--ink); background: #fffdf8; font: inherit; }
+		.main-ask-options { display: none; gap: 10px; margin-top: 4px; }
+		.main-ask-options.visible { display: grid; }
+		.main-ask-options a { padding: 12px 14px; color: var(--ink); background: var(--mint); font-weight: 700; }
+		.main-ask-options a:hover { background: var(--yellow); }
+		.ai-note { margin: 0; color: #9eb0a7; font-size: 12px; }
+		.test-hub { padding: 30px 0 105px; }
+		.test-hub h2 { max-width: 600px; margin-bottom: 14px; }
+		.test-hub-intro { max-width: 570px; margin: 0 0 25px; color: var(--muted); }
+		.test-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+		.test-link { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 22px; border: 1px solid var(--line); color: var(--ink); background: var(--card); box-shadow: var(--shadow); font-weight: 700; transition: transform 180ms ease, background 180ms ease; }
+		.test-link:hover { background: var(--mint); transform: translateY(-3px); }
+		.test-link small { color: var(--muted); font-size: 12px; font-weight: 400; text-align: right; }
+		.ai-result { display: none; margin-top: 20px; padding: 22px; border-left: 3px solid var(--yellow); color: var(--ink); background: var(--card); }
+		.ai-result.visible { display: block; }
+		.ai-result.loading { color: var(--muted); }
+		.ai-result h4 { margin: 0 0 10px; font-family: "Space Grotesk", sans-serif; font-size: 20px; }
+		.ai-result p { margin: 0; white-space: pre-line; }
+		.sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+		.sources a { padding: 5px 8px; color: var(--mint-dark); background: var(--mint); font-size: 12px; font-weight: 700; }
+		footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+		@media (max-width: 760px) {
+			.shell { width: min(100% - 28px, 600px); }
+			nav { display: none; }
+			.hero { display: block; min-height: auto; padding: 60px 0 20px; }
+			h1 { font-size: clamp(47px, 14vw, 76px); }
+			.hero-art { min-height: 350px; margin-top: 25px; }
+			.brain { top: 85px; left: 50%; width: 180px; height: 155px; margin-left: -95px; font-size: 75px; }
+			.orbit { inset: 15px 0 0; }
+			.sticker-one { right: 0; }
+			.sticker-two { right: 4px; bottom: 18px; }
+			.section { padding: 70px 0; }
+			.section-heading { display: block; }
+			.section-heading p { margin-top: 18px; }
+			.lesson-grid, .practice { grid-template-columns: 1fr; }
+			.lesson { min-height: 240px; }
+			.lesson h3 { margin-top: 45px; }
+			.practice { gap: 30px; padding-top: 20px; }
+			.questions { padding: 60px 0 80px; }
+			.ai-panel { grid-template-columns: 1fr; padding: 22px; box-shadow: 7px 7px 0 var(--coral); }
+			.ai-intro h3 { font-size: 29px; }
+			.test-links { grid-template-columns: 1fr; }
+		}
+	</style>
+</head>
+<body>
+	<header class="shell topbar">
+		<a class="brand" href="#inicio"><span class="brand-mark">☼</span> Mente Clara</a>
+		<nav aria-label="Navegación principal">
+			<a href="lecciones.html">Explora</a>
+			<a href="#practica">Practica</a>
+			<a href="cuestionario.html">Cuestionario</a>
+			<a href="autoconocimiento.html">Autoconocimiento</a>
+			<a href="sobre.html">Sobre el curso</a>
+		</nav>
+	</header>
+
+	<main id="inicio">
+		<section class="shell hero">
+			<div>
+				<div class="eyebrow">Psicología cotidiana</div>
+				<h1>Entiende tu mente. <em>Cambia tu mirada.</em></h1>
+				<p class="hero-copy">Una introducción clara y humana a las ideas que explican cómo pensamos, sentimos y nos relacionamos.</p>
+				<a class="button" href="#explora">Empezar a explorar <span aria-hidden="true">→</span></a>
+				<a class="button button-light" href="autoconocimiento.html">Ir al cuestionario de autoconocimiento <span aria-hidden="true">→</span></a>
+			</div>
+			<div class="hero-art" aria-label="Ilustración abstracta de una mente en movimiento">
+				<div class="orbit"></div>
+				<div class="brain"><span>☻</span></div>
+				<div class="sticker sticker-one">curiosidad primero</div>
+				<div class="sticker sticker-two">pensar · sentir · actuar</div>
+			</div>
+		</section>
+
+		<section class="shell section" id="explora">
+			<div class="section-heading">
+				<div><div class="eyebrow">Ruta de aprendizaje</div><h2>Tres ideas para comenzar.</h2></div>
+				<p>Pequeñas lecciones para observar tu experiencia con más claridad y menos juicios.</p>
+			</div>
+			<div class="lesson-grid">
+				<article class="lesson"><div class="lesson-number"><span>01</span><span>5 min</span></div><h3>La mente no es una cámara</h3><p>Descubre cómo la atención y la memoria construyen nuestra versión de lo que ocurre.</p></article>
+				<article class="lesson"><div class="lesson-number"><span>02</span><span>7 min</span></div><h3>Emociones con información</h3><p>Aprende a leer una emoción como una señal, sin convertirla en una orden.</p></article>
+				<article class="lesson"><div class="lesson-number"><span>03</span><span>6 min</span></div><h3>El poder del contexto</h3><p>Observa cómo el entorno influye en nuestras decisiones, hábitos y vínculos.</p></article>
+			</div>
+		</section>
+
+		<section class="shell practice" id="practica">
+			<div class="practice-copy"><div class="eyebrow">Pausa y observa</div><h2>Una pregunta vale más que una etiqueta.</h2><p>La psicología no consiste en diagnosticarte a ti o a los demás. Consiste en hacer mejores preguntas sobre lo que experimentamos.</p></div>
+			<div class="quiz" aria-live="polite"><p class="quiz-label">Mini reto · atención</p><h3>¿Qué describe mejor la atención selectiva?</h3><div class="answers"><button class="answer" data-correct="false">Recordar absolutamente todo lo que ocurre.</button><button class="answer" data-correct="true">Enfocarnos en ciertos estímulos mientras filtramos otros.</button><button class="answer" data-correct="false">Evitar cualquier emoción durante una tarea.</button></div><p id="feedback"></p></div>
+		</section>
+
+		<section class="shell questions" id="preguntas">
+			<div class="ai-panel">
+				<div class="ai-intro">
+					<div class="eyebrow">Explora con IA</div>
+					<h3>Preguntas educativas, con fuentes actuales.</h3>
+					<p>Escribe una duda sobre psicología. Gemini consultará la web y responderá de forma clara, con enlaces para seguir aprendiendo.</p>
+				</div>
+				<div class="ai-form">
+					<label for="main-topic">Elige un tema</label>
+					<select class="main-topic" id="main-topic">
+						<option>Memoria y aprendizaje</option>
+						<option>Emociones y regulación emocional</option>
+						<option>Atención y percepción</option>
+						<option>Psicología social</option>
+						<option>Sueño y bienestar</option>
+					</select>
+					<button class="button" type="button" id="main-ask-button">Preguntarle a Gemini <span aria-hidden="true">↗</span></button>
+					<div class="main-ask-options" id="main-ask-options">
+						<a id="main-gemini-link" href="https://gemini.google.com/app" target="_blank" rel="noopener">Abrir Gemini con el tema copiado ↗</a>
+						<a href="cuestionario.html">Ir a preguntas educativas →</a>
+						<a href="autoconocimiento.html">Ir al cuestionario de autoconocimiento →</a>
+					</div>
+					<p class="ai-note">La clave queda protegida en el servidor. También puedes practicar sin IA.</p>
+				</div>
+			</div>
+			<div class="ai-result" id="ai-result" aria-live="polite"></div>
+		</section>
+
+		<section class="shell test-hub" id="tests">
+			<div class="eyebrow">Sigue aprendiendo</div>
+			<h2>Dos formas de practicar psicología.</h2>
+			<p class="test-hub-intro">Elige entre repasar autores y teorías o reflexionar sobre situaciones interpersonales cotidianas.</p>
+			<div class="test-links">
+				<a class="test-link" href="preguntas-basicas.html">Preguntas educativas <span aria-hidden="true">→</span><small>15 preguntas sobre autores y teorías</small></a>
+				<a class="test-link" href="autoconocimiento.html">Autoconocimiento interpersonal <span aria-hidden="true">→</span><small>20 situaciones con feedback personalizado</small></a>
+			</div>
+		</section>
+	</main>
+
+	<footer class="shell" id="sobre">Mente Clara · Aprende psicología con curiosidad, contexto y cuidado. · <a href="lecciones.html">Lecciones</a> · <a href="cuestionario.html">Cuestionario</a> · <a href="sobre.html">Sobre el curso</a></footer>
+	<script>
+		const answers = document.querySelectorAll('.answer');
+		const feedback = document.querySelector('#feedback');
+
+		answers.forEach((answer) => {
+			answer.addEventListener('click', () => {
+				answers.forEach((item) => item.classList.remove('correct', 'wrong'));
+				const isCorrect = answer.dataset.correct === 'true';
+				answer.classList.add(isCorrect ? 'correct' : 'wrong');
+				feedback.textContent = isCorrect
+					? 'Correcto: la atención funciona como un foco, no como una grabadora.'
+					: 'Casi. La atención implica seleccionar y filtrar información.';
+			});
+		});
+
+		const mainTopic = document.querySelector('#main-topic');
+		const mainAskButton = document.querySelector('#main-ask-button');
+		const mainAskOptions = document.querySelector('#main-ask-options');
+		const mainGeminiLink = document.querySelector('#main-gemini-link');
+
+		mainAskButton.addEventListener('click', () => {
+			mainAskOptions.classList.toggle('visible');
+		});
+
+		mainGeminiLink.addEventListener('click', async () => {
+			const prompt = `Quiero aprender sobre ${mainTopic.value}. Formula una pregunta educativa de psicología y explícame la respuesta con fuentes fiables. No des diagnósticos ni consejos clínicos.`;
+			try { await navigator.clipboard.writeText(prompt); } catch { /* Gemini se abrirá igualmente. */ }
+		});
+
+		function escapeHtml(value) {
+			return value.replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character]));
+		}
+
+		function escapeAttribute(value) {
+			return escapeHtml(value).replace(/`/g, '&#96;');
+		}
+	</script>
+</body>
+</html>

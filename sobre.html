@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sobre el curso Mente Clara de introduccion a la psicologia.">
+  <title>Mente Clara | Sobre el curso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #172522; --muted: #61716b; --paper: #f5f1e9; --card: #fffdf8; --mint: #b9e3d1; --mint-dark: #26745c; --coral: #ef866f; --yellow: #f3d36a; --line: #dfe4dc; }
+    :root[data-theme="dark"] { --ink: #edf4ee; --muted: #aabbb1; --paper: #14201d; --card: #1d2d28; --mint: #356b57; --mint-dark: #9cdec1; --coral: #f49a84; --yellow: #f3d36a; --line: #40534b; }
+    * { box-sizing: border-box; } body { margin: 0; color: var(--ink); background: var(--paper); font-family: "DM Sans", sans-serif; line-height: 1.5; transition: background 300ms ease, color 300ms ease; } a { color: inherit; text-decoration: none; }
+    .shell { width: min(100% - 40px, 920px); margin: auto; } .topbar { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; } .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; } .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; background: var(--yellow); border-radius: 50% 50% 50% 12px; }
+    .actions { display: flex; align-items: center; gap: 18px; } .back { color: var(--muted); font-size: 14px; font-weight: 700; } .theme { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: transparent; cursor: pointer; }
+    main { padding: 75px 0 95px; } .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px; color: var(--mint-dark); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; } .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--coral); } h1, h2 { margin: 0; font-family: "Space Grotesk", sans-serif; letter-spacing: -.055em; line-height: 1.05; } h1 { max-width: 760px; font-size: clamp(45px, 7vw, 78px); } h2 { margin-bottom: 13px; font-size: 29px; } .lead { max-width: 650px; margin: 23px 0 65px; color: var(--muted); font-size: 18px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; } .card { min-height: 245px; padding: 25px; border: 1px solid var(--line); background: var(--card); } .card:nth-child(2) { background: var(--mint); } .card:nth-child(3) { background: #f8d8cc; } .card p { color: var(--muted); }
+    footer { padding: 25px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; } @media (max-width: 700px) { .shell { width: min(100% - 28px, 580px); } .back { display: none; } main { padding: 55px 0 70px; } .grid { grid-template-columns: 1fr; } .card { min-height: auto; } }
+  </style>
+</head>
+<body>
+  <header class="shell topbar"><a class="brand" href="index.html"><span class="brand-mark">☼</span> Mente Clara</a><div class="actions"><a class="back" href="index.html">← Volver a inicio</a><button class="theme" id="theme" type="button" aria-label="Activar modo oscuro">☾</button></div></header>
+  <main class="shell"><div class="eyebrow">Sobre Mente Clara</div><h1>Aprender psicología con curiosidad y cuidado.</h1><p class="lead">Este sitio convierte ideas introductorias de psicología en pequeñas experiencias: leer, preguntarse, practicar y revisar lo aprendido.</p><section class="grid"><article class="card"><h2>Objetivo</h2><p>Ofrecer conceptos claros sobre mente, emociones, aprendizaje y relaciones para comenzar a observar la experiencia cotidiana.</p></article><article class="card"><h2>Método</h2><p>Combinamos lecciones breves, preguntas de opción múltiple y autoobservación guiada para aprender de forma activa.</p></article><article class="card"><h2>Límite importante</h2><p>El contenido es educativo. No diagnostica, no reemplaza una consulta profesional y no debe usarse para etiquetar a otras personas.</p></article></section></main>
+  <footer class="shell">Mente Clara · <a href="lecciones.html">Lecciones</a> · <a href="cuestionario.html">Preguntas educativas</a> · <a href="autoconocimiento.html">Autoconocimiento</a></footer>
+  <script>const theme = document.querySelector('#theme'); if (localStorage.getItem('mente-clara-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; updateTheme(); theme.addEventListener('click', () => { document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('mente-clara-theme', document.documentElement.dataset.theme); updateTheme(); }); function updateTheme() { const dark = document.documentElement.dataset.theme === 'dark'; theme.textContent = dark ? '☀' : '☾'; theme.setAttribute('aria-label', dark ? 'Activar modo claro' : 'Activar modo oscuro'); }</script>
+</body>
+</html>

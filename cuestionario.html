@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cuestionario de psicología generado con Gemini y fuentes web.">
+  <title>Mente Clara | Cuestionario educativo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #172522; --muted: #61716b; --paper: #f5f1e9; --card: #fffdf8; --mint: #b9e3d1; --mint-dark: #26745c; --coral: #ef866f; --yellow: #f3d36a; --line: #dfe4dc; --shadow: rgba(42, 61, 52, .1); }
+    :root[data-theme="dark"] { --ink: #edf4ee; --muted: #aabbb1; --paper: #14201d; --card: #1d2d28; --mint: #356b57; --mint-dark: #9cdec1; --coral: #f49a84; --yellow: #f3d36a; --line: #40534b; --shadow: rgba(0, 0, 0, .3); }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: "DM Sans", sans-serif; line-height: 1.5; transition: color 300ms ease, background 300ms ease; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    .shell { width: min(100% - 40px, 980px); margin: 0 auto; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.03em; }
+    .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; background: var(--yellow); border-radius: 50% 50% 50% 12px; }
+    .header-actions { display: flex; align-items: center; gap: 20px; }
+    .back { color: var(--muted); font-size: 14px; font-weight: 700; }
+    .back:hover { color: var(--ink); }
+    .theme-toggle { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: transparent; cursor: pointer; font-size: 18px; transition: transform 180ms ease, background 180ms ease; }
+    .theme-toggle:hover { background: var(--mint); transform: rotate(12deg) scale(1.05); }
+    .intro { padding: 85px 0 45px; text-align: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px; color: var(--mint-dark); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--coral); }
+    h1, h2, h3 { margin: 0; font-family: "Space Grotesk", sans-serif; letter-spacing: -.055em; line-height: 1.05; }
+    h1 { max-width: 730px; margin: 0 auto; font-size: clamp(43px, 7vw, 76px); }
+    .intro p { max-width: 600px; margin: 22px auto 0; color: var(--muted); font-size: 17px; }
+    .setup { display: grid; grid-template-columns: 1fr; gap: 18px; margin-bottom: 24px; }
+    .field { display: grid; gap: 8px; }
+    label { color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    input, select { width: 100%; padding: 13px 14px; border: 1px solid var(--line); border-radius: 0; color: var(--ink); background: var(--card); transition: border 180ms ease, background 300ms ease; }
+    input:focus, select:focus { outline: 2px solid var(--yellow); outline-offset: 2px; }
+    .button { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 14px 20px; border: 0; border-radius: 4px; color: #fff; background: var(--ink); cursor: pointer; font-weight: 700; transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease; }
+    .button:hover { background: var(--mint-dark); transform: translateY(-2px); box-shadow: 0 7px 16px var(--shadow); }
+    .button:disabled { cursor: wait; opacity: .65; }
+    .generate { width: 100%; margin-bottom: 24px; }
+    .ask-options { display: none; gap: 12px; margin: -8px 0 24px; padding: 18px; border: 1px solid var(--line); background: var(--card); animation: card-in 320ms ease both; }
+    .ask-options.visible { display: grid; }
+    .ask-options h3 { font-size: 22px; }
+    .ask-options p { margin: 0; color: var(--muted); font-size: 14px; }
+    .ask-option { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--line); color: var(--ink); background: transparent; font-weight: 700; transition: transform 180ms ease, background 180ms ease; }
+    .ask-option:hover { background: var(--mint); transform: translateX(3px); }
+    .ask-option small { color: var(--muted); font-size: 12px; font-weight: 400; text-align: right; }
+    .quiz-card { display: none; padding: clamp(24px, 5vw, 46px); border: 1px solid var(--line); background: var(--card); box-shadow: 12px 12px 0 var(--mint); }
+    .quiz-card.visible { display: block; animation: card-in 500ms cubic-bezier(.2, .8, .2, 1) both; }
+    .quiz-meta { display: flex; justify-content: space-between; gap: 16px; color: var(--coral); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .quiz-card h2 { max-width: 760px; margin: 22px 0 28px; font-size: clamp(27px, 4vw, 42px); }
+    .options { display: grid; gap: 12px; }
+    .option { padding: 16px; border: 1px solid var(--line); color: var(--ink); background: transparent; cursor: pointer; text-align: left; transition: border 180ms ease, background 180ms ease, transform 180ms ease; animation: option-in 420ms both; }
+    .option:nth-child(2) { animation-delay: 70ms; }
+    .option:nth-child(3) { animation-delay: 140ms; }
+    .option:nth-child(4) { animation-delay: 210ms; }
+    .option:hover { border-color: var(--mint-dark); background: #f1f8f3; transform: translateX(3px); }
+    .option.correct { border-color: var(--mint-dark); background: var(--mint); }
+    .option.incorrect { border-color: #c45b4d; background: #f8d8cc; }
+    .result { min-height: 25px; margin: 20px 0 0; color: var(--mint-dark); font-weight: 700; }
+    .explanation { display: none; margin-top: 25px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); }
+    .explanation.visible { display: block; }
+    .explanation strong { color: var(--ink); }
+    .sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .sources a { padding: 6px 9px; color: var(--mint-dark); background: var(--mint); font-size: 12px; font-weight: 700; }
+    .error { display: none; margin: 15px 0; padding: 14px; color: #803d32; background: #f8d8cc; font-size: 14px; }
+    .error.visible { display: block; }
+    .privacy { margin: 0 0 70px; color: var(--muted); font-size: 12px; text-align: center; }
+    @keyframes card-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes option-in { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes pulse { 50% { opacity: .55; } }
+    .generate:disabled { animation: pulse 1.2s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+    @media (max-width: 650px) { .shell { width: min(100% - 28px, 560px); } .topbar { padding: 18px 0; } .intro { padding: 60px 0 35px; } .setup { grid-template-columns: 1fr; } .quiz-card { box-shadow: 7px 7px 0 var(--mint); } }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">☼</span> Mente Clara</a>
+    <div class="header-actions">
+      <a class="back" href="index.html#preguntas">← Volver a preguntas</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Activar modo oscuro" title="Cambiar tema">☾</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="intro">
+      <div class="eyebrow">Laboratorio de aprendizaje</div>
+      <h1>Comprueba lo que sabes sobre psicología.</h1>
+      <p>Gemini buscará información actual, preparará una pregunta de opción múltiple y después te explicará la respuesta.</p>
+    </section>
+
+    <section aria-label="Configuración del cuestionario">
+      <div class="setup">
+        <div class="field">
+          <label for="topic">Tema de psicología</label>
+          <select id="topic">
+            <option>Memoria y aprendizaje</option>
+            <option>Emociones y regulación emocional</option>
+            <option>Atención y percepción</option>
+            <option>Psicología social</option>
+            <option>Sueño y bienestar</option>
+          </select>
+        </div>
+      </div>
+      <button class="button generate" id="generate" type="button" aria-expanded="false" aria-controls="ask-options">Preguntarle a Gemini <span aria-hidden="true">↗</span></button>
+      <div class="ask-options" id="ask-options">
+        <h3>¿Cómo quieres aprender?</h3>
+        <p>Elige una opción para continuar con el tema seleccionado: <strong id="selected-topic">Memoria y aprendizaje</strong>.</p>
+        <a class="ask-option" id="gemini-link" href="https://gemini.google.com/app" target="_blank" rel="noopener">Abrir Gemini con este tema <span aria-hidden="true">↗</span><small>Copiaré una pregunta guía</small></a>
+      </div>
+      <p class="error" id="error" role="alert"></p>
+    </section>
+
+    <section class="quiz-card" id="quiz-card" aria-live="polite">
+      <div class="quiz-meta"><span id="quiz-topic">Pregunta educativa</span><span>Opción múltiple</span></div>
+      <h2 id="question">Preparando una pregunta...</h2>
+      <div class="options" id="options"></div>
+      <p class="result" id="result"></p>
+      <div class="explanation" id="explanation"></div>
+    </section>
+    <p class="privacy">La clave de Gemini está protegida en el servidor. Las respuestas educativas no sustituyen la orientación de un profesional de la salud.</p>
+  </main>
+
+  <script>
+    const topicInput = document.querySelector('#topic');
+    const generateButton = document.querySelector('#generate');
+    const askOptions = document.querySelector('#ask-options');
+    const selectedTopic = document.querySelector('#selected-topic');
+    const geminiLink = document.querySelector('#gemini-link');
+    const errorBox = document.querySelector('#error');
+    const quizCard = document.querySelector('#quiz-card');
+    const questionTitle = document.querySelector('#question');
+    const optionsBox = document.querySelector('#options');
+    const result = document.querySelector('#result');
+    const explanation = document.querySelector('#explanation');
+    const themeToggle = document.querySelector('#theme-toggle');
+    let currentQuestion = null;
+
+    const savedTheme = localStorage.getItem('mente-clara-theme');
+    if (savedTheme === 'dark') document.documentElement.dataset.theme = 'dark';
+    updateThemeButton();
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
+      localStorage.setItem('mente-clara-theme', isDark ? 'light' : 'dark');
+      updateThemeButton();
+    });
+
+    generateButton.addEventListener('click', () => {
+      const isVisible = askOptions.classList.toggle('visible');
+      generateButton.setAttribute('aria-expanded', String(isVisible));
+      selectedTopic.textContent = topicInput.value;
+      if (isVisible) askOptions.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    topicInput.addEventListener('change', () => {
+      selectedTopic.textContent = topicInput.value;
+    });
+
+    geminiLink.addEventListener('click', async () => {
+      const prompt = `Quiero aprender sobre ${topicInput.value}. Formula una pregunta educativa de psicología y explícame la respuesta con fuentes fiables. No des diagnósticos ni consejos clínicos.`;
+      try {
+        await navigator.clipboard.writeText(prompt);
+        geminiLink.querySelector('small').textContent = 'Tema copiado: pégalo en Gemini';
+      } catch {
+        geminiLink.querySelector('small').textContent = 'Se abrirá Gemini; escribe el tema allí';
+      }
+    });
+
+    function updateThemeButton() {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      themeToggle.textContent = isDark ? '☀' : '☾';
+      themeToggle.setAttribute('aria-label', isDark ? 'Activar modo claro' : 'Activar modo oscuro');
+      themeToggle.title = isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+    }
+
+    async function generateQuestion() {
+      const topic = topicInput.value;
+      const isStaticHost = window.location.protocol === 'file:' || /\.github\.io$/i.test(window.location.hostname);
+      setLoading(true);
+      hideError();
+      quizCard.classList.add('visible');
+      questionTitle.textContent = 'Buscando información y preparando tu pregunta...';
+      optionsBox.innerHTML = '';
+      result.textContent = '';
+      explanation.className = 'explanation';
+
+      try {
+        if (isStaticHost) {
+          throw new Error('STATIC_SITE_MODE');
+        }
+
+        const response = await fetch('/api/generate-question', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ topic })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error?.message || data.error || 'No se pudo conectar con Gemini.');
+        currentQuestion = data.question;
+        if (!currentQuestion || !Array.isArray(currentQuestion.options) || currentQuestion.options.length !== 4) throw new Error('Gemini no devolvió una pregunta con cuatro opciones.');
+        renderQuestion(currentQuestion, topic, data.sources || []);
+      } catch (error) {
+        const isConnectionError = error instanceof TypeError && error.message === 'Failed to fetch';
+        const isQuotaError = error.message && error.message.toLowerCase().includes('quota');
+        const shouldUseFallback = isStaticHost || isConnectionError || isQuotaError || error.message === 'STATIC_SITE_MODE';
+
+        if (shouldUseFallback) {
+          renderQuestion(getFallbackQuestion(topic), topic, []);
+          showError('GitHub Pages no ejecuta el backend de Gemini. Se muestra una pregunta local para que la web siga funcionando pública y sin archivos locales.');
+        } else {
+          quizCard.classList.remove('visible');
+          const message = `${error.message} Comprueba la cuota, tu clave y que la API de Gemini esté habilitada.`;
+          showError(message);
+        }
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    function renderQuestion(question, topic, groundingChunks) {
+      questionTitle.textContent = question.question;
+      document.querySelector('#quiz-topic').textContent = topic;
+      question.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'option';
+        button.type = 'button';
+        button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+        button.addEventListener('click', () => checkAnswer(index, groundingChunks));
+        optionsBox.appendChild(button);
+      });
+    }
+
+    function checkAnswer(selectedIndex, groundingChunks) {
+      const optionButtons = [...optionsBox.querySelectorAll('.option')];
+      optionButtons.forEach((button, index) => {
+        button.disabled = true;
+        if (index === currentQuestion.correctIndex) button.classList.add('correct');
+        if (index === selectedIndex && index !== currentQuestion.correctIndex) button.classList.add('incorrect');
+      });
+      const isCorrect = selectedIndex === currentQuestion.correctIndex;
+      result.textContent = isCorrect ? '¡Correcto! Has identificado la respuesta.' : 'No exactamente. La respuesta correcta está marcada en verde.';
+      explanation.className = 'explanation visible';
+      explanation.innerHTML = `<strong>Por qué:</strong> ${escapeHtml(currentQuestion.explanation)}${renderSources(groundingChunks)}`;
+    }
+
+    function renderSources(chunks) {
+      const sources = chunks.map((chunk) => chunk.web || chunk).filter((source) => source?.uri).slice(0, 5);
+      if (!sources.length) return '';
+      return `<div class="sources">${sources.map((source) => `<a href="${escapeAttribute(source.uri)}" target="_blank" rel="noopener">${escapeHtml(source.title || 'Ver fuente')} ↗</a>`).join('')}</div>`;
+    }
+
+    function getFallbackQuestion(topic) {
+      const questions = {
+        'Memoria y aprendizaje': {
+          question: '¿Qué ayuda normalmente a consolidar mejor un aprendizaje?',
+          options: ['Repasar una sola vez durante muchas horas', 'Distribuir el estudio y recuperar la información varias veces', 'Evitar relacionar el contenido con conocimientos previos', 'Estudiar siempre sin pausas'],
+          correctIndex: 1,
+          explanation: 'La práctica espaciada y la recuperación activa suelen favorecer la consolidación y el recuerdo a largo plazo.'
+        },
+        'Emociones y regulación emocional': {
+          question: '¿Qué significa regular una emoción?',
+          options: ['Eliminarla inmediatamente', 'Ignorarla por completo', 'Comprenderla y modular la respuesta de forma flexible', 'Convertirla siempre en una emoción positiva'],
+          correctIndex: 2,
+          explanation: 'Regular una emoción no significa eliminarla: implica reconocerla y elegir una respuesta adecuada al contexto.'
+        },
+        'Atención y percepción': {
+          question: '¿Qué caracteriza a la atención selectiva?',
+          options: ['Procesar todos los estímulos con la misma intensidad', 'Enfocar recursos mentales en parte de la información', 'Recordar cada detalle del entorno', 'No recibir información sensorial'],
+          correctIndex: 1,
+          explanation: 'La atención selectiva permite priorizar ciertos estímulos mientras otros reciben menos recursos de procesamiento.'
+        },
+        'Psicología social': {
+          question: '¿Qué estudia principalmente la psicología social?',
+          options: ['Cómo influye el contexto social en pensamientos y conductas', 'Solo los reflejos del sistema nervioso', 'Únicamente los sueños', 'La composición química de los medicamentos'],
+          correctIndex: 0,
+          explanation: 'La psicología social estudia cómo otras personas, los grupos y las normas influyen en nuestra experiencia y conducta.'
+        },
+        'Sueño y bienestar': {
+          question: '¿Cuál es una función relacionada con el sueño?',
+          options: ['Impedir cualquier procesamiento emocional', 'Apoyar procesos de memoria y recuperación', 'Eliminar la necesidad de descansar', 'Mantener la atención sin interrupciones'],
+          correctIndex: 1,
+          explanation: 'El sueño participa en la recuperación y se relaciona con procesos de memoria, aprendizaje y regulación emocional.'
+        }
+      };
+      return questions[topic] || questions['Memoria y aprendizaje'];
+    }
+
+    function parseQuestion(text) {
+      try { return JSON.parse(text); } catch { return JSON.parse(text.replace(/^```json\s*|\s*```$/g, '')); }
+    }
+
+    function setLoading(isLoading) {
+      generateButton.disabled = isLoading;
+      generateButton.innerHTML = isLoading ? 'Generando pregunta...' : 'Generar pregunta con Gemini <span aria-hidden="true">↗</span>';
+    }
+
+    function showError(message) { errorBox.textContent = message; errorBox.classList.add('visible'); }
+    function hideError() { errorBox.classList.remove('visible'); }
+    function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[character])); }
+    function escapeAttribute(value) { return escapeHtml(value).replace(/`/g, '&#96;'); }
+  </script>
+</body>
+</html>

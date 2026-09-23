@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lecciones introductorias de psicologia en Mente Clara.">
+  <title>Mente Clara | Lecciones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #172522; --muted: #61716b; --paper: #f5f1e9; --card: #fffdf8; --mint: #b9e3d1; --mint-dark: #26745c; --coral: #ef866f; --yellow: #f3d36a; --line: #dfe4dc; }
+    :root[data-theme="dark"] { --ink: #edf4ee; --muted: #aabbb1; --paper: #14201d; --card: #1d2d28; --mint: #356b57; --mint-dark: #9cdec1; --coral: #f49a84; --yellow: #f3d36a; --line: #40534b; }
+    * { box-sizing: border-box; } body { margin: 0; color: var(--ink); background: var(--paper); font-family: "DM Sans", sans-serif; line-height: 1.5; transition: background 300ms ease, color 300ms ease; }
+    a { color: inherit; text-decoration: none; } button { font: inherit; }
+    .shell { width: min(100% - 40px, 1020px); margin: auto; } .topbar { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; } .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; background: var(--yellow); border-radius: 50% 50% 50% 12px; }
+    .actions { display: flex; align-items: center; gap: 18px; } .back { color: var(--muted); font-size: 14px; font-weight: 700; } .theme { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: transparent; cursor: pointer; }
+    .intro { padding: 80px 0 42px; } .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px; color: var(--mint-dark); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; } .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--coral); }
+    h1, h2 { margin: 0; font-family: "Space Grotesk", sans-serif; letter-spacing: -.055em; line-height: 1.05; } h1 { max-width: 760px; font-size: clamp(44px, 7vw, 78px); } .intro p { max-width: 620px; margin: 22px 0 0; color: var(--muted); font-size: 17px; }
+    .lesson-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding-bottom: 90px; } .lesson { min-height: 360px; padding: 25px; border: 1px solid var(--line); background: var(--card); } .lesson:nth-child(2) { background: var(--mint); } .lesson:nth-child(3) { background: #f8d8cc; }
+    .lesson-number { color: var(--muted); font-size: 13px; font-weight: 700; } h2 { margin: 55px 0 15px; font-size: 30px; } .lesson p { color: var(--muted); } .takeaway { margin-top: 28px; color: var(--mint-dark); font-size: 14px; font-weight: 700; }
+    .footer { padding: 25px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; } @media (max-width: 720px) { .shell { width: min(100% - 28px, 580px); } .back { display: none; } .intro { padding: 60px 0 35px; } .lesson-grid { grid-template-columns: 1fr; } .lesson { min-height: 260px; } h2 { margin-top: 35px; } }
+  </style>
+</head>
+<body>
+  <header class="shell topbar"><a class="brand" href="index.html"><span class="brand-mark">☼</span> Mente Clara</a><div class="actions"><a class="back" href="index.html">← Volver a inicio</a><button class="theme" id="theme" type="button" aria-label="Activar modo oscuro">☾</button></div></header>
+  <main class="shell">
+    <section class="intro"><div class="eyebrow">Ruta de aprendizaje</div><h1>Tres ideas para mirar la mente con más claridad.</h1><p>Lecciones breves para construir una base de psicología cotidiana, sin etiquetas rápidas ni promesas simplistas.</p></section>
+    <section class="lesson-grid">
+      <article class="lesson"><div class="lesson-number">01 · Atención y memoria</div><h2>La mente no es una cámara</h2><p>La atención selecciona información y la memoria reconstruye experiencias. Por eso dos personas pueden recordar el mismo momento de forma diferente.</p><p class="takeaway">Idea clave: recordar no es reproducir, es reconstruir.</p></article>
+      <article class="lesson"><div class="lesson-number">02 · Emociones</div><h2>Emociones con información</h2><p>Una emoción combina cambios corporales, interpretación y contexto. Escucharla puede orientar, pero sentir algo no obliga a actuar de una sola manera.</p><p class="takeaway">Idea clave: una emoción es una señal, no una orden.</p></article>
+      <article class="lesson"><div class="lesson-number">03 · Psicología social</div><h2>El poder del contexto</h2><p>Las normas, los grupos y la situación influyen en nuestras decisiones. Comprender el contexto ayuda a reemplazar juicios automáticos por preguntas mejores.</p><p class="takeaway">Idea clave: conducta y contexto siempre dialogan.</p></article>
+    </section>
+  </main>
+  <footer class="shell footer">Mente Clara · <a href="cuestionario.html">Preguntas educativas</a> · <a href="autoconocimiento.html">Autoconocimiento</a></footer>
+  <script>const theme = document.querySelector('#theme'); if (localStorage.getItem('mente-clara-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; updateTheme(); theme.addEventListener('click', () => { document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('mente-clara-theme', document.documentElement.dataset.theme); updateTheme(); }); function updateTheme() { const dark = document.documentElement.dataset.theme === 'dark'; theme.textContent = dark ? '☀' : '☾'; theme.setAttribute('aria-label', dark ? 'Activar modo claro' : 'Activar modo oscuro'); }</script>
+</body>
+</html>

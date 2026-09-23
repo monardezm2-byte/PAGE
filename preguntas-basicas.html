@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="15 preguntas basicas de psicologia sobre autores y teorias.">
+  <title>Mente Clara | Preguntas básicas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink: #172522; --muted: #61716b; --paper: #f5f1e9; --card: #fffdf8; --mint: #b9e3d1; --mint-dark: #26745c; --coral: #ef866f; --yellow: #f3d36a; --line: #dfe4dc; }
+    :root[data-theme="dark"] { --ink: #edf4ee; --muted: #aabbb1; --paper: #14201d; --card: #1d2d28; --mint: #356b57; --mint-dark: #9cdec1; --coral: #f49a84; --yellow: #f3d36a; --line: #40534b; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: "DM Sans", sans-serif; line-height: 1.5; transition: color 300ms ease, background 300ms ease; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .shell { width: min(100% - 40px, 980px); margin: 0 auto; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -.03em; }
+    .brand-mark { display: grid; place-items: center; width: 36px; height: 36px; background: var(--yellow); border-radius: 50% 50% 50% 12px; }
+    .top-actions { display: flex; align-items: center; gap: 18px; }
+    .back { color: var(--muted); font-size: 14px; font-weight: 700; }
+    .theme-toggle { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); background: transparent; cursor: pointer; }
+    .intro { padding: 72px 0 42px; text-align: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px; color: var(--mint-dark); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 24px; height: 2px; background: var(--coral); }
+    h1, h2, h3 { margin: 0; font-family: "Space Grotesk", sans-serif; letter-spacing: -.055em; line-height: 1.05; }
+    h1 { max-width: 700px; margin: auto; font-size: clamp(43px, 7vw, 76px); }
+    .intro p { max-width: 590px; margin: 22px auto 0; color: var(--muted); font-size: 17px; }
+    .scorebar { position: sticky; top: 12px; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 28px; padding: 15px 18px; border: 1px solid var(--line); background: var(--card); box-shadow: 0 8px 20px rgba(42, 61, 52, .08); }
+    .scorebar strong { color: var(--mint-dark); }
+    .reset { padding: 8px 12px; border: 1px solid var(--line); color: var(--ink); background: transparent; cursor: pointer; font-weight: 700; }
+    .question-list { display: grid; gap: 16px; padding-bottom: 80px; }
+    .question-card { padding: 25px; border: 1px solid var(--line); background: var(--card); animation: appear 500ms both; }
+    .question-card:nth-child(2n) { animation-delay: 70ms; }
+    .question-card:nth-child(3n) { animation-delay: 140ms; }
+    .question-number { color: var(--coral); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .question-card h2 { margin: 12px 0 20px; font-size: clamp(22px, 3vw, 30px); }
+    .author { margin: 0 0 17px; color: var(--muted); font-size: 14px; }
+    .options { display: grid; gap: 9px; }
+    .option { padding: 12px 14px; border: 1px solid var(--line); color: var(--ink); background: transparent; cursor: pointer; text-align: left; transition: background 180ms ease, transform 180ms ease; }
+    .option:hover:not(:disabled) { background: var(--mint); transform: translateX(3px); }
+    .option.correct { border-color: var(--mint-dark); background: var(--mint); }
+    .option.incorrect { border-color: #c45b4d; background: #f8d8cc; }
+    .option:disabled { cursor: default; }
+    .feedback { min-height: 22px; margin: 14px 0 0; color: var(--mint-dark); font-size: 14px; font-weight: 700; }
+    @keyframes appear { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    @media (max-width: 600px) { .shell { width: min(100% - 28px, 560px); } .topbar { padding: 18px 0; } .back { display: none; } .intro { padding: 58px 0 35px; } .question-card { padding: 21px; } }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">☼</span> Mente Clara</a>
+    <div class="top-actions">
+      <a class="back" href="cuestionario.html">← Volver al selector</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Activar modo oscuro">☾</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="intro">
+      <div class="eyebrow">Fundamentos de psicología</div>
+      <h1>15 preguntas para conocer sus grandes ideas.</h1>
+      <p>Repasa autores, conceptos y teorías. Cada pregunta tiene una sola respuesta correcta y una explicación breve.</p>
+    </section>
+    <div class="scorebar"><span>Progreso: <strong id="score">0 / 15</strong></span><button class="reset" id="reset" type="button">Reiniciar</button></div>
+    <section class="question-list" id="question-list" aria-live="polite"></section>
+  </main>
+
+  <script>
+    const questions = [
+      { question: '¿Quién es considerado el padre del psicoanálisis?', author: 'Autor: Sigmund Freud', options: ['Sigmund Freud', 'B. F. Skinner', 'Jean Piaget', 'Carl Rogers'], correct: 0, explanation: 'Freud desarrolló el psicoanálisis y estudió el papel del inconsciente.' },
+      { question: '¿Qué estudia principalmente el conductismo?', author: 'Teoría: Conductismo', options: ['La conducta observable', 'Los arquetipos', 'Los sueños exclusivamente', 'La intuición moral'], correct: 0, explanation: 'El conductismo se centra en las conductas observables y en cómo el ambiente influye en ellas.' },
+      { question: '¿Qué concepto se asocia especialmente con Carl Jung?', author: 'Autor: Carl Jung', options: ['Inconsciente colectivo', 'Condicionamiento operante', 'Zona de desarrollo próximo', 'Jerarquía de necesidades'], correct: 0, explanation: 'Jung propuso el inconsciente colectivo y los arquetipos.' },
+      { question: '¿Quién propuso la jerarquía de necesidades?', author: 'Autor: Abraham Maslow', options: ['Abraham Maslow', 'Ivan Pavlov', 'Albert Bandura', 'William James'], correct: 0, explanation: 'Maslow organizó necesidades humanas desde las fisiológicas hasta la autorrealización.' },
+      { question: '¿Qué explicó Ivan Pavlov con sus experimentos?', author: 'Autor: Ivan Pavlov', options: ['El condicionamiento clásico', 'La memoria de trabajo', 'El apego seguro', 'La disonancia cognitiva'], correct: 0, explanation: 'Pavlov mostró cómo un estímulo puede asociarse con una respuesta mediante condicionamiento clásico.' },
+      { question: '¿Qué es el condicionamiento operante?', author: 'Autor: B. F. Skinner', options: ['Aprender por consecuencias', 'Aprender solo observando', 'Interpretar símbolos oníricos', 'Formar vínculos afectivos'], correct: 0, explanation: 'El condicionamiento operante explica cómo las consecuencias aumentan o reducen conductas.' },
+      { question: '¿Qué etapa pertenece al desarrollo cognitivo de Piaget?', author: 'Autor: Jean Piaget', options: ['Etapa sensoriomotora', 'Etapa del inconsciente colectivo', 'Etapa de autorrealización', 'Etapa del reflejo condicionado'], correct: 0, explanation: 'Piaget describió la etapa sensoriomotora como la primera del desarrollo cognitivo.' },
+      { question: '¿Qué propuso Albert Bandura con el aprendizaje social?', author: 'Autor: Albert Bandura', options: ['Aprender observando modelos', 'Aprender sin interacción social', 'Eliminar toda influencia ambiental', 'Explicar la personalidad solo por instintos'], correct: 0, explanation: 'Bandura destacó la observación, la imitación y la interacción entre persona, conducta y ambiente.' },
+      { question: '¿Qué estudia la psicología de la Gestalt?', author: 'Teoría: Gestalt', options: ['La percepción de totalidades', 'Solo los reflejos', 'La química cerebral', 'La interpretación de sueños'], correct: 0, explanation: 'La Gestalt sostiene que percibimos configuraciones organizadas y que el todo puede diferir de la suma de sus partes.' },
+      { question: '¿Quién desarrolló la terapia centrada en la persona?', author: 'Autor: Carl Rogers', options: ['Carl Rogers', 'Erik Erikson', 'John Bowlby', 'Lev Vygotsky'], correct: 0, explanation: 'Rogers creó un enfoque humanista basado en empatía, autenticidad y aceptación.' },
+      { question: '¿Qué concepto se relaciona con Lev Vygotsky?', author: 'Autor: Lev Vygotsky', options: ['Zona de desarrollo próximo', 'Complejo de Edipo', 'Condicionamiento clásico', 'Inconsciente colectivo'], correct: 0, explanation: 'La zona de desarrollo próximo describe lo que una persona puede lograr con apoyo.' },
+      { question: '¿Qué estudia la teoría del apego de John Bowlby?', author: 'Autor: John Bowlby', options: ['Los vínculos tempranos', 'La percepción del color', 'La memoria sensorial', 'Los sesgos estadísticos'], correct: 0, explanation: 'Bowlby estudió la importancia de los vínculos tempranos entre niños y cuidadores.' },
+      { question: '¿Qué es la disonancia cognitiva?', author: 'Autor: Leon Festinger', options: ['Malestar por ideas o conductas contradictorias', 'Una fase del sueño', 'Un tipo de memoria muscular', 'Un reflejo automático'], correct: 0, explanation: 'Festinger describió el malestar que aparece cuando nuestras ideas y acciones entran en conflicto.' },
+      { question: '¿Qué propone la teoría de las inteligencias múltiples?', author: 'Autor: Howard Gardner', options: ['Que existen distintas capacidades intelectuales', 'Que solo existe una inteligencia', 'Que la inteligencia no cambia nunca', 'Que la memoria es idéntica en todos'], correct: 0, explanation: 'Gardner propuso que las capacidades humanas pueden expresarse en diferentes dominios.' },
+      { question: '¿Qué perspectiva estudia pensamientos, recuerdos y resolución de problemas?', author: 'Perspectiva: Psicología cognitiva', options: ['La perspectiva cognitiva', 'La perspectiva exclusivamente biológica', 'La perspectiva del reflejo condicionado', 'La perspectiva astrológica'], correct: 0, explanation: 'La psicología cognitiva estudia procesos mentales como atención, memoria, lenguaje y razonamiento.' }
+    ];
+
+    const list = document.querySelector('#question-list');
+    const score = document.querySelector('#score');
+    const reset = document.querySelector('#reset');
+    let answered = 0;
+    let correctAnswers = 0;
+
+    function renderQuestions() {
+      list.innerHTML = questions.map((item, questionIndex) => `
+        <article class="question-card">
+          <div class="question-number">Pregunta ${questionIndex + 1} de 15</div>
+          <h2>${item.question}</h2>
+          <p class="author">${item.author}</p>
+          <div class="options">${item.options.map((option, optionIndex) => `<button class="option" type="button" data-question="${questionIndex}" data-option="${optionIndex}">${String.fromCharCode(65 + optionIndex)}. ${option}</button>`).join('')}</div>
+          <p class="feedback" id="feedback-${questionIndex}"></p>
+        </article>`).join('');
+      list.querySelectorAll('.option').forEach((button) => button.addEventListener('click', answerQuestion));
+    }
+
+    function answerQuestion(event) {
+      const button = event.currentTarget;
+      const questionIndex = Number(button.dataset.question);
+      const selected = Number(button.dataset.option);
+      const item = questions[questionIndex];
+      const card = button.closest('.question-card');
+      const buttons = [...card.querySelectorAll('.option')];
+      if (buttons.some((option) => option.disabled)) return;
+      buttons.forEach((option) => { option.disabled = true; });
+      buttons[item.correct].classList.add('correct');
+      const feedback = card.querySelector('.feedback');
+      if (selected === item.correct) {
+        correctAnswers += 1;
+        feedback.textContent = `Correcto. ${item.explanation}`;
+      } else {
+        button.classList.add('incorrect');
+        feedback.textContent = `La respuesta correcta es ${String.fromCharCode(65 + item.correct)}. ${item.explanation}`;
+      }
+      answered += 1;
+      score.textContent = `${correctAnswers} / ${questions.length} correctas · ${answered} respondidas`;
+    }
+
+    reset.addEventListener('click', () => { answered = 0; correctAnswers = 0; score.textContent = '0 / 15'; renderQuestions(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    renderQuestions();
+
+    const themeToggle = document.querySelector('#theme-toggle');
+    if (localStorage.getItem('mente-clara-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+    updateThemeButton();
+    themeToggle.addEventListener('click', () => { document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('mente-clara-theme', document.documentElement.dataset.theme); updateThemeButton(); });
+    function updateThemeButton() { const dark = document.documentElement.dataset.theme === 'dark'; themeToggle.textContent = dark ? '☀' : '☾'; themeToggle.setAttribute('aria-label', dark ? 'Activar modo claro' : 'Activar modo oscuro'); }
+  </script>
+</body>
+</html>
