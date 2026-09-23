@@ -62,46 +62,112 @@
   <footer class="shell">Mente Clara · <a href="lecciones.html">Lecciones</a> · <a href="cuestionario.html">Preguntas educativas</a></footer>
   <script>
     const items = [
-      ['Cuando noto que alguien está incómodo por algo que hice, intento entender qué ocurrió.', 'Esto observa toma de perspectiva: comprender el estado de otra persona antes de actuar.'],
-      ['Después de equivocarme, puedo reconocer mi parte sin buscar excusas inmediatas.', 'Esto se relaciona con responsabilidad personal y capacidad de reparación.'],
-      ['Antes de una decisión importante, suelo pensar en sus posibles consecuencias.', 'Esto observa planificación y control de impulsos.'],
-      ['En una discusión, puedo esperar antes de responder si estoy muy alterado.', 'Esto se relaciona con regulación emocional y control inhibitorio.'],
-      ['Puedo respetar un límite aunque no sea el resultado que quería.', 'Esto observa respeto por la autonomía y los límites interpersonales.'],
-      ['Cuando alguien piensa distinto, puedo escuchar sin convertir la conversación en un ataque.', 'Esto se relaciona con flexibilidad cognitiva y comunicación respetuosa.'],
-      ['Si rompo un acuerdo, procuro hablarlo y buscar una forma de repararlo.', 'Esto observa conducta prosocial y reparación de vínculos.'],
-      ['Me resulta fácil identificar qué emoción estoy sintiendo, incluso cuando es desagradable.', 'Esto se relaciona con conciencia emocional.'],
-      ['Puedo cambiar de opinión cuando aparece información nueva y relevante.', 'Esto observa flexibilidad psicológica y actualización de creencias.'],
-      ['En un grupo, noto cuándo una persona está quedando apartada.', 'Esto se relaciona con sensibilidad social y atención a señales interpersonales.'],
-      ['Cuando consigo algo, puedo disfrutarlo sin necesitar que otra persona pierda.', 'Esto observa cooperación y orientación prosocial.'],
-      ['Me cuesta detener una conducta aunque ya vea que está perjudicando a alguien.', 'Esto explora autorregulación y aprendizaje a partir de consecuencias.'],
-      ['Puedo pedir disculpas sin sentir que hacerlo elimina mi dignidad.', 'Esto se relaciona con reparación, humildad y seguridad interpersonal.'],
-      ['Cuando alguien me cuenta un problema, intento escuchar antes de ofrecer soluciones.', 'Esto observa escucha activa y empatía.'],
-      ['Suelo cumplir una responsabilidad aunque nadie vaya a comprobarlo.', 'Esto se relaciona con integridad y autorregulación.'],
-      ['Si siento celos o enojo, puedo expresarlo sin amenazar ni intimidar.', 'Esto observa regulación emocional y comunicación no violenta.'],
-      ['Puedo reconocer que una persona tiene motivos distintos a los míos.', 'Esto se relaciona con mentalización y comprensión de perspectivas.'],
-      ['Cuando una conducta mía causa un problema, intento aprender algo para la próxima vez.', 'Esto observa aprendizaje por consecuencias y cambio de conducta.'],
-      ['Me importa que una decisión sea justa para las personas involucradas, no solo conveniente para mí.', 'Esto se relaciona con razonamiento moral y consideración del bienestar ajeno.'],
-      ['Puedo pedir apoyo cuando noto que una situación me supera.', 'Esto observa autoconciencia y búsqueda adaptativa de ayuda.']
+      'Cuando alguien me ignora, me quedo pensando en qué hice para merecerlo.',
+      'Necesito que la gente me vea bien para sentirme tranquilo.',
+      'Si alguien me contradice, siento que me están quitando algo importante.',
+      'Puedo reconocer cuándo me estoy poniendo a la defensiva sin esconderlo.',
+      'Cuando no consigo lo que quiero, me cuesta aceptar el “no” sin resentirme.',
+      'A veces me gusta sentir que tengo la última palabra en una discusión.',
+      'Me inquieta la idea de ser percibido como débil o poco valioso.',
+      'Si alguien me deja de lado, me cuesta no volver a buscarlo para entender por qué.',
+      'Puedo sentirme más cómodo cuando controlo la narrativa de una situación.',
+      'Me doy cuenta de cuándo uso una sonrisa para ocultar irritación o rencor.',
+      'Hay momentos en los que prefiero ganar aunque alguien salga lastimado.',
+      'Cuando alguien se equivoca conmigo, primero me enojo y después pienso si fue real o solo me dolió el orgullo.',
+      'Me cuesta admitir que necesito ayuda porque eso me parece una vulnerabilidad innecesaria.',
+      'Si alguien me decepciona, primero reviso si me hizo quedar mal ante otros.',
+      'He usado el silencio o la distancia para hacerle sentir a alguien que se salió de lugar.',
+      'Noto que algunas personas me dejan muy tranquilo y otras me ponen en modo alerta.',
+      'Me cuesta aceptar que el vínculo puede sostenerse sin que yo controle todo.',
+      'Cuando algo me afecta profundamente, me cuesta decirlo sin convertirlo en un ataque.',
+      'Si alguien me manipula sin que yo lo vea, me da rabia, pero también me da mucha curiosidad.',
+      'Puedo detectar la intentona de dominar la conversación, aunque de vez en cuando yo también la hago.',
+      'Cuando siento que me necesitan, me hace bien, pero también me da un poco de poder sobre ellos.',
+      'Hay situaciones en las que prefiero que otros se sientan culpables antes que reconocer mi parte.',
+      'Si me critican, primero me pregunto si hay verdad en eso o solo me duele la forma.',
+      'Puedo sentirme muy calmado en público y muy agitado por dentro cuando alguien me despeina el ego.',
+      'A veces me gusta la idea de ser alguien imprescindible para los demás.',
+      'Cuando me hierve la necesidad de tener la razón, mi primera reacción no siempre es pensar.',
+      'He intentado hacer sentir bien a alguien para después sacarle algo a cambio sin decirlo explícitamente.',
+      'En relaciones complejas, a veces me parece más fácil controlar el clima que hablar de lo que duele.',
+      'Si alguien me quiere demasiado, me da seguridad, pero también me da la sensación de que me están vigilando.',
+      'Tengo un radar para detectar cuándo alguien quiere aprovecharse y también para notar cuándo yo mismo lo hago.',
+      'Mi mayor miedo no es ser rechazado, sino ser visto tal cual soy y no gustar por eso.'
     ];
-    const labels = ['Nada cercana', 'Poco cercana', 'Intermedia', 'Bastante cercana', 'Muy cercana'];
+
+    const labels = ['Nunca', 'Poco', 'A veces', 'Muchas veces', 'Casi siempre'];
     const list = document.querySelector('#question-list');
     const finish = document.querySelector('#finish');
     const feedback = document.querySelector('#feedback');
-    list.innerHTML = items.map((item, index) => `<article class="question"><div class="number">Situación ${index + 1} de ${items.length}</div><h2>${item[0]}</h2><div class="scale">${labels.map((label, value) => `<label title="${label}"><input type="radio" name="item-${index}" value="${value + 1}">${value + 1}<span>${label}</span></label>`).join('')}</div></article>`).join('');
-    list.addEventListener('change', () => { finish.disabled = list.querySelectorAll('input:checked').length !== items.length; });
+
+    list.innerHTML = items.map((prompt, index) => `
+      <article class="question">
+        <div class="number">Situación ${index + 1} de ${items.length}</div>
+        <h2>${prompt}</h2>
+        <div class="scale">${labels.map((label, value) => `<label title="${label}"><input type="radio" name="item-${index}" value="${value + 1}">${value + 1}<span>${label}</span></label>`).join('')}</div>
+      </article>
+    `).join('');
+
+    list.addEventListener('change', () => {
+      finish.disabled = list.querySelectorAll('input:checked').length !== items.length;
+    });
+
     finish.addEventListener('click', () => {
-      const values = items.map((item, index) => Number(list.querySelector(`input[name="item-${index}"]:checked`).value));
+      const values = items.map((_, index) => Number(list.querySelector(`input[name="item-${index}"]:checked`).value));
       const total = values.reduce((sum, value) => sum + value, 0);
       const average = (total / items.length).toFixed(1);
-      const responseFeedback = values.map((value, index) => {
-        const intensity = value <= 2 ? 'Tu respuesta indica poca cercanía con esta situación.' : value === 3 ? 'Tu respuesta indica una cercanía intermedia con esta situación.' : 'Tu respuesta indica bastante cercanía con esta situación.';
-        return `<li><strong>Situación ${index + 1}:</strong> ${intensity} ${items[index][1]}</li>`;
-      }).join('');
-      const emailBody = ['Cuestionario de autoconocimiento interpersonal', '', ...items.map((item, index) => `${index + 1}. ${item[0]}\nRespuesta: ${values[index]}/5`), '', `Promedio descriptivo: ${average}/5`, 'Este cuestionario es educativo y no diagnóstico.'].join('\n');
-      feedback.innerHTML = `<h2>Tu feedback personalizado</h2><p>Tu promedio descriptivo es <strong>${average}/5</strong>. No es una etiqueta ni una conclusión clínica.</p><p>Devolución para cada respuesta:</p><ul>${responseFeedback}</ul><p>La psicología estudia patrones en contexto, no respuestas aisladas. Puedes usar este resultado como punto de reflexión, no como diagnóstico.</p><a class="mail-link" href="mailto:maximomonardez4@gmail.com?subject=Resultados%20de%20autoconocimiento&body=${encodeURIComponent(emailBody)}">Abrir correo y revisar mis respuestas →</a>`;
+      const selfImage = values.slice(0, 10).reduce((sum, value) => sum + value, 0) / 10;
+      const control = values.slice(10, 20).reduce((sum, value) => sum + value, 0) / 10;
+      const intimacy = values.slice(20, 30).reduce((sum, value) => sum + value, 0) / 10;
+
+      const summary = `Tu promedio general es ${average}/5. Lo que más aparece es una mezcla de vigilancia, necesidad de tener claro el control y sensibilidad a lo que otros piensan. En otras palabras, hay una parte tuya que está muy atenta al clima emocional y otra que intenta no quedar expuesta. Eso puede volverse una estrategia muy eficiente para protegerte, pero también puede dejarte peleando con tus propias defensas en lugar de convivir con la vulnerabilidad.`;
+
+      const body =
+        selfImage >= 3.5
+          ? 'Hay una fuerte búsqueda de coherencia y presencia: te importa mucho cómo te ven y cómo te posicionas, incluso cuando eso te exige estar más despierto a tu propia imagen.'
+          : 'Hay una parte de ti más abierta a no tenerlo todo bajo control y más dispuesta a dejar que el vínculo sea menos estratégico.';
+
+      const second =
+        control >= 3.5
+          ? 'También aparece una tendencia a manejar el ambiente para no sentirte desarmado. En la práctica, eso puede verse como una gran capacidad para reaccionar rápido, pero a veces también te empuja a convertir la relación en un juego de vigilancia y ajuste.'
+          : 'No parece que te sientas obligado a controlar cada paso del vínculo; hay más espacio para la verdad y menos para la estrategia.';
+
+      const third =
+        intimacy >= 3.5
+          ? 'La parte más íntima de tu mapa parece estar muy conectada con el deseo de ser comprendido, de no ser malinterpretado y de no sentirse pequeño frente a la mirada ajena. Eso también puede ser una especie de puerta hacia la empatía, aunque a veces se cierre detrás del miedo a quedar expuesto.'
+          : 'Hay una tendencia a guardar partes de ti para no dejar que la intimidad te desarme. Eso puede ser una protección útil, pero también puede volver muy difícil sentir que se te entiende sin que te estés defendiendo.';
+
+      const finalLine =
+        average >= 3.5
+          ? 'En conjunto, lo más saludable es dejar que la honestidad se vuelva más fuerte que la necesidad de dominar o protegerse. Cuando puedes mirar lo que te mueve sin convertirlo en una batalla, tu presencia se vuelve más relajada y menos exigente.'
+          : 'En conjunto, la clave no es dejar de defenderte, sino elegir defensas que no te alejen de lo que de verdad quieres. Hay un poder enorme en reconocer lo que te duele sin convertirlo en un punto de ataque.';
+
+      const emailBody = [
+        'Resumen narrativo de autoconocimiento interpersonal',
+        '',
+        summary,
+        body,
+        second,
+        third,
+        finalLine,
+        '',
+        `Promedio general: ${average}/5`
+      ].join('\n\n');
+
+      feedback.innerHTML = `
+        <h2>Tu mapa interno</h2>
+        <p>${summary}</p>
+        <p>${body}</p>
+        <p>${second}</p>
+        <p>${third}</p>
+        <p>${finalLine}</p>
+        <p>Este ejercicio no es un diagnóstico ni una etiqueta; es una forma de observar patrones, defensas y deseos. Te sirve para reconocer qué partes de ti están más despiertas y cuáles necesitan menos tensión para sentirse seguras.</p>
+        <a class="mail-link" href="mailto:maximomonardez4@gmail.com?subject=Resumen%20de%20autoconocimiento&body=${encodeURIComponent(emailBody)}">Enviar este resumen por correo →</a>
+      `;
       feedback.classList.add('visible');
       feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
+
     const theme = document.querySelector('#theme');
     if (localStorage.getItem('mente-clara-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
     updateTheme();
